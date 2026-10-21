@@ -50,7 +50,7 @@ a{color:var(--accent);text-underline-offset:3px}
 <figure><img src="images/tool-request-dropdown.png" alt="A Claude conversation asking for the latest LEGO news, with the Unified Documents Retrieval tool expanded to show its request" loading="lazy"></figure>
 
 <h2>Multiple Tool Calls Add Up Credits</h2>
-<p>For the next example, you can ask a question like, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, Aggregate document metrics, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
+<p>For the next example, you can ask a question like, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, <code>Aggregate document metrics</code>, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
 <figure><img src="images/poppi-aggregate-call.gif" alt="Animation of an assistant answering a question about Poppi by calling the Aggregate document metrics tool" loading="lazy"></figure>
 <p>Each call uses credits based on a credit cost assigned at the tool-level. The assistant then builds the comparison table, works out the comparison in text, and writes the explanation. That part costs no credits. The credits are only used in prompts that call Meltwater MCP tools.</p>
 
@@ -70,18 +70,20 @@ a{color:var(--accent);text-underline-offset:3px}
 <p>By default, the answer covers the current month for everyone on the account. You can ask for a different date range, a specific tool, or a breakdown by month, tool, or user. To check one conversation, ask “How many credits were used?” in that same conversation.</p>
 <figure><img src="images/credits-in-conversation.png" alt="A ChatGPT conversation where the user asks for account credit usage and gets credits consumed and total calls" loading="lazy"></figure>
 <figure><img src="images/credits-in-claude.png" alt="A Claude conversation that loads Meltwater credit usage and answers with total credits and calls, broken down by tool and day" loading="lazy"></figure>
-<p><strong>Tips for the account usage tool:</strong> Results are most accurate for future conversations. If you try “account_usage” in older conversations, it may not be accurate to future credit measurements.</p>
+<p><strong>Tips for the account usage tool:</strong> Results are most accurate for future conversations. If you try <code>account_get_credit_usage</code> in older conversations, it may not be accurate to future credit measurements.</p>
 </div>
 <div><p><strong>Where to track tokens:</strong> Check your AI provider’s usage or billing settings. Meltwater doesn’t see or charge for tokens.</p></div>
 <div><p><strong>Making credits go further:</strong> Follow-up requests like reformatting, summarizing or rewriting usually don’t call Meltwater again. Being specific up front also helps the assistant pick the right tool the first time.</p></div>
-<div>
-<p><strong>Learn more:</strong></p>
+</div>
+
+<h2>Learn more</h2>
 <ul>
 <li><a href="https://community.meltwater.com/meltwater-mcp-433">Meltwater MCP Help Center</a></li>
 <li><a href="https://community.meltwater.com/product-updates/meltwater-mcp-credit-dashboard-12451">Meltwater MCP Credit Dashboard</a></li>
+<li><a href="https://developer.meltwater.com/guides/meltwater-mcp/overview/">Developer Portal: Meltwater MCP overview</a></li>
+<li><a href="https://developer.meltwater.com/guides/meltwater-mcp/connecting/">Developer Portal: Connecting to Meltwater MCP</a></li>
+<li><a href="https://developer.meltwater.com/tools/mcp-console/tools-explorer/">Developer Portal: Tools Explorer</a></li>
 </ul>
-</div>
-</div>
 </main>
 </body>
 </html>
