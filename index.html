@@ -8,11 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
 <style>
-:root{--teal:#00A7A5;--dark:#1C7070;--tint:#CEF5F5;--card:#F0F4F4;--ink:#1A1A1A;--bg:#fff;--muted:#4a5a5a;--line:#d5e0e0;--accent:#1C7070}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101616;--ink:#EAF2F2;--card:#182222;--muted:#9db3b3;--line:#2a3a3a;--tint:#12383a;--accent:#2fc7c5}}
+:root{--teal:#00A7A5;--dark:#1C7070;--tint:#CEF5F5;--card:#F0F4F4;--ink:#1A1A1A;--bg:#fff;--muted:#4a5a5a;--line:#d5e0e0;--accent:#1C7070;--logo-filter:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101616;--ink:#EAF2F2;--card:#182222;--muted:#9db3b3;--line:#2a3a3a;--tint:#12383a;--accent:#2fc7c5;--logo-filter:invert(1)}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Poppins,Arial,Helvetica,sans-serif}
-main{max-width:760px;margin:0 auto;padding:48px 16px 80px}
+main{max-width:760px;margin:0 auto;padding:40px 16px 80px}
+.logo{display:block;height:20px;width:auto;margin:0 0 28px;filter:var(--logo-filter);border:0;border-radius:0}
 .tag{display:inline-block;background:var(--tint);color:var(--accent);font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px}
 h1{font-size:clamp(30px,6vw,42px);line-height:1.2;font-weight:600;margin:16px 0 24px;color:var(--accent)}
 .byline{font-size:15px;color:var(--muted);margin:-8px 0 24px}
@@ -20,13 +21,7 @@ h2{font-size:24px;line-height:1.3;font-weight:600;margin:48px 0 12px}
 p{margin:0 0 16px}
 .tldr{background:var(--card);border-left:4px solid var(--teal);border-radius:8px;padding:16px 20px;margin:24px 0}
 figure{margin:24px 0}
-img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
-ul{padding-left:22px;margin:0 0 16px}
-li{margin-bottom:6px}
-.good{background:var(--card);border-radius:12px;padding:8px 24px;margin-top:16px}
-.good>div{padding:16px 0;border-bottom:1px solid var(--line)}
-.good>div:last-child{border-bottom:0}
-.good strong{color:var(--accent)}
+img,video{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
 figcaption{font-size:14px;color:var(--muted);margin-top:8px}
 .quick{background:var(--card);border-left:4px solid var(--teal);border-radius:8px;padding:16px 20px;margin:0 0 24px}
 .quick p{margin:0 0 6px}.quick p:last-child{margin:0}
@@ -35,12 +30,20 @@ th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vert
 thead th{background:var(--accent);color:#fff;font-weight:500}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) thead th{color:#101616}}
 tbody th{font-weight:500;width:26%}
+td.n{white-space:nowrap;font-weight:600;color:var(--accent)}
+.note{font-size:14px;color:var(--muted)}
+ul{padding-left:22px;margin:0 0 16px}
+li{margin-bottom:6px}
+.good{background:var(--card);border-radius:12px;padding:8px 24px;margin-top:16px}
+.good>div{padding:16px 0;border-bottom:1px solid var(--line)}
+.good>div:last-child{border-bottom:0}
 code{background:var(--tint);padding:1px 6px;border-radius:4px;font-size:.9em}
 a{color:var(--accent);text-underline-offset:3px}
 </style>
 </head>
 <body>
 <main>
+<img class="logo" src="images/meltwater-logo.svg" alt="Meltwater">
 <span class="tag">Related products: API &amp; MCP</span>
 <h1>Understanding MCP Credits vs. Tokens</h1>
 <p class="byline">By <a href="https://github.com/mcopelandmw">Maggie Copeland</a> · Product Marketing Manager</p>
@@ -54,7 +57,7 @@ a{color:var(--accent);text-underline-offset:3px}
 <tr><th>Who bills you</th><td>Your AI provider</td><td>Meltwater</td></tr>
 <tr><th>What uses them</th><td>Every message you send and every reply</td><td>Only when your assistant calls a Meltwater tool</td></tr>
 <tr><th>What drives the amount</th><td>How long the conversation is</td><td>Which Meltwater tools get called</td></tr>
-<tr><th>Where to see them</th><td>Your AI provider’s usage or billing settings</td><td>Account &gt; MCP Usage, or ask your assistant</td></tr>
+<tr><th>Where to see them</th><td>Your AI provider’s usage or billing settings. Meltwater doesn’t see or charge for tokens.</td><td>Account &gt; MCP Usage (Account Admins), or ask your assistant</td></tr>
 </tbody>
 </table>
 
@@ -65,20 +68,40 @@ a{color:var(--accent);text-underline-offset:3px}
 </div>
 
 <h2>Tokens: Billed by Your AI Provider</h2>
-<p>Tokens measure how much text your AI assistant (Claude, ChatGPT, Copilot and others) reads and writes. Your AI provider bills you for them. Each time you send a message, the assistant:</p>
+<p>Tokens measure how much text your AI assistant (Claude, ChatGPT, custom connectors and others) reads and writes. Your AI provider bills you for them. Each time you send a message, the assistant:</p>
 <ul><li>Reads your message</li><li>Rereads the whole conversation so far</li><li>Writes its reply</li></ul>
 <p>Each of those steps uses tokens, whether or not Meltwater is involved.</p>
-<figure><img src="images/steps-each-message.gif" alt="Animation showing the assistant reading a message, rereading the conversation, and writing a reply, each step using tokens" loading="lazy"></figure>
+<figure><video autoplay loop muted playsinline preload="metadata" poster="images/steps-each-message-poster.webp" aria-label="Animation showing the assistant reading a message, rereading the conversation, and writing a reply, each step using tokens"><source src="images/steps-each-message.mp4" type="video/mp4"><img src="images/steps-each-message-poster.webp" alt="The assistant reads a message, rereads the conversation, and writes a reply, each step using tokens"></video></figure>
 
 <h2>Intelligence Credits: Billed by Meltwater</h2>
 <p>Credits measure the Meltwater intelligence your assistant pulls in using Meltwater MCP. They’re used from your Meltwater credit balance, only when the assistant calls a Meltwater tool. A tool is one task the AI Assistant assigns to Meltwater, like building a search or pulling analytics. The AI assistant chooses the tools needed for each task, but you can guide it.</p>
 <p>Some tools are charged by credit cost, depending on how much work the tool does. Others are free. You can recognize a tool when you expand its dropdown to see a “request” (might look different in your AI environment).</p>
-<figure><img src="images/tool-request-dropdown.png" alt="A Claude conversation asking for the latest LEGO news, with the Unified Documents Retrieval tool expanded to show its request" loading="lazy"><figcaption>Expand the tool dropdown to see the request your assistant sent to Meltwater.</figcaption></figure>
+<figure><img src="images/tool-request-dropdown.webp" alt="A Claude conversation asking for the latest LEGO news, with the Unified Documents Retrieval tool expanded to show its request" loading="lazy"><figcaption>Expand the tool dropdown to see the request your assistant sent to Meltwater.</figcaption></figure>
+
+<h2>What Meltwater Tools Cost</h2>
+<p>Some Meltwater tools are free, and the rest are charged by credit cost depending on how much work they do. Tools fall into one of three levels.</p>
+<table>
+<thead><tr><th>Level</th><th>Credits per call</th><th>What it does</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>Included</td><td class="n">0</td><td>Looks things up or manages your own assets</td><td><code>Account: Get Credit Usage</code>, <code>List Standard Searches</code>, <code>Create Standard Search</code></td></tr>
+<tr><td>Intelligence</td><td class="n">25</td><td>Pulls analytics or a specific record</td><td><code>Aggregate document metrics</code>, <code>Get full document by ID</code>, <code>Get GenAI Lens analytics</code></td></tr>
+<tr><td>Advanced</td><td class="n">200</td><td>Retrieves documents or generates content</td><td><code>Retrieve documents by keyword</code>, <code>Retrieve documents by meaning</code>, <code>Outreach Generate Pitch</code></td></tr>
+</tbody>
+</table>
+<p class="note">Costs can change. To see the current cost of every tool you have, ask your assistant “Which Meltwater tools do I have, and what do they cost?” Checking costs doesn’t use credits.</p>
 
 <h2>Multiple Tool Calls Add Up Credits</h2>
-<p>For the next example, you can ask a question like, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, <code>Aggregate document metrics</code>, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
-<figure><img src="images/poppi-aggregate-call.gif" alt="Animation of an assistant answering a question about Poppi by calling the Aggregate document metrics tool" loading="lazy"></figure>
-<p>Tools that cost credits use an amount assigned at the tool level. The credits are only used in prompts that call Meltwater MCP tools.</p>
+<p>Say you ask, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, <code>Aggregate document metrics</code>, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
+<figure><video autoplay loop muted playsinline preload="metadata" poster="images/poppi-aggregate-call-poster.webp" aria-label="Animation of an assistant answering a question about Poppi by calling the Aggregate document metrics tool"><source src="images/poppi-aggregate-call.mp4" type="video/mp4"><img src="images/poppi-aggregate-call-poster.webp" alt="An assistant answering a question about Poppi by calling the Aggregate document metrics tool"></video></figure>
+<p>A bigger question takes more calls. Here the question was, “How has sentiment about Poppi performed after the announcement of Jetty in the last 14 days? Include relevant coverage and trends.” The assistant made 13 Meltwater calls to answer it:</p>
+<ul>
+<li>4 free lookups for the schema and shared skills: 0 credits</li>
+<li>4 <code>Retrieve documents by keyword</code> calls at 200 credits each: 800 credits</li>
+<li>3 <code>Aggregate document metrics</code> calls at 25 credits each: 75 credits</li>
+<li>2 aggregations that failed: they didn’t show up in credit usage</li>
+</ul>
+<p>That’s 875 credits for one question, compared with 25 for the single-call question above.</p>
+<figure><img src="images/poppi-tool-calls.webp" alt="A Claude conversation showing the list of Meltwater tool calls made for one question about Poppi and Jetty: schema lookups, keyword retrievals and aggregations, two marked Failed" loading="lazy"><figcaption>Each line is one tool call. Retrievals cost 200 credits, aggregations cost 25, and lookups are free.</figcaption></figure>
 
 <h2>Follow-Up Messages Use Tokens, Not Always Credits</h2>
 <p>Next, you might ask your AI assistant to “Refresh this weekly brief.” It calls Meltwater for fresh data, and those tool calls use credits. Then you say “Now reformat that as bullets.” That second request never reaches Meltwater, because the assistant already has the data. It uses tokens, because the assistant has to reread the thread and rewrite the brief. It uses no credits.</p>
@@ -87,22 +110,20 @@ a{color:var(--accent);text-underline-offset:3px}
 <p>Hope that clarifies it: Prompt length drives tokens. Meltwater calls drive credits.</p>
 <p>That’s why a long, extensive conversation can use plenty of tokens and zero credits. It’s also why a four-word prompt can use more credits than you’d expect if it calls several heavyweight tools.</p>
 
-<h2>Try it yourself</h2>
+<h2>Try It Yourself</h2>
 <p>Type a prompt, pick a model, and see the estimated tokens. Turn on Meltwater MCP to see the credits a tool call would use.</p>
 <p><a href="calculator.html" target="_blank" rel="noopener">Open the calculator in a new window</a></p>
+
 <h2>Good to Know</h2>
 <div class="good">
 <div>
-<p><strong>Where to track credits:</strong> Account Admins can open Account &gt; MCP Usage to see credit spend by user, by tool and over time.</p>
-<figure><img src="images/mcp-usage-page.png" alt="The Account menu in Meltwater with MCP Usage selected, showing credits used and a daily usage chart" loading="lazy"><figcaption>Account &gt; MCP Usage shows credits used and a daily trend.</figcaption></figure>
+<figure style="margin-top:0"><img src="images/mcp-usage-page.webp" alt="The Account menu in Meltwater with MCP Usage selected, showing credits used and a daily usage chart" loading="lazy"><figcaption>Account Admins can open Account &gt; MCP Usage to see credit spend by user, by tool and over time.</figcaption></figure>
 <p>Anyone on your account with Meltwater MCP can also ask their assistant for usage, even users who aren’t admins. Ask something like “What’s my credit usage?” or “How many credits did this cost?” The assistant uses the account usage tool (<code>account_get_credit_usage</code>) to pull the numbers. Note: Checking usage doesn’t use credits.</p>
 <p>By default, the answer covers the current month for everyone on the account. You can ask for a different date range, a specific tool, or a breakdown by month, tool, or user. To check one conversation, ask “How many credits were used?” in that same conversation.</p>
-<figure><img src="images/credits-in-conversation.png" alt="A ChatGPT conversation where the user asks for account credit usage and gets credits consumed and total calls" loading="lazy"><figcaption>In ChatGPT, the highlighted numbers are the credits consumed and total calls.</figcaption></figure>
-<figure><img src="images/credits-in-claude.png" alt="A Claude conversation that loads Meltwater credit usage and answers with total credits and calls, broken down by tool and day" loading="lazy"><figcaption>In Claude, the highlighted total is the credits and calls for the period.</figcaption></figure>
-<p><strong>Tips for the account usage tool:</strong> Results are most accurate for future conversations. If you try <code>account_get_credit_usage</code> in older conversations, it may not be accurate to future credit measurements.</p>
+<figure><img src="images/credits-in-conversation.webp" alt="A ChatGPT conversation where the user asks for account credit usage and gets credits consumed and total calls" loading="lazy"><figcaption>In ChatGPT, the highlighted numbers are the credits consumed and total calls.</figcaption></figure>
+<figure style="margin-bottom:0"><img src="images/credits-in-claude.webp" alt="A Claude conversation that loads Meltwater credit usage and answers with total credits and calls, broken down by tool and day" loading="lazy"><figcaption>In Claude, the highlighted total is the credits and calls for the period.</figcaption></figure>
 </div>
-<div><p><strong>Where to track tokens:</strong> Check your AI provider’s usage or billing settings. Meltwater doesn’t see or charge for tokens.</p></div>
-<div><p><strong>Making credits go further:</strong> Follow-up requests like reformatting, summarizing or rewriting usually don’t call Meltwater again. Being specific up front also helps the assistant pick the right tool the first time.</p></div>
+<div><p><strong>Making credits go further:</strong> Follow-up requests like reformatting, summarizing or rewriting usually don’t call Meltwater again.</p></div>
 </div>
 
 <h2>Troubleshooting</h2>
@@ -110,7 +131,7 @@ a{color:var(--accent);text-underline-offset:3px}
 <p><strong>My assistant doesn’t call Meltwater at all.</strong> Make sure the Meltwater connector is turned on in your AI assistant, then ask for something that needs Meltwater data, like the latest news about your brand. If the answer doesn’t show a Meltwater tool call, name Meltwater in your prompt.</p>
 <p><strong>A tool isn’t available to me.</strong> The tools you can use depend on your Meltwater package, and some need a permission an Account Admin can grant. Ask your assistant “Which Meltwater tools do I have, and what do they cost?” Checking costs doesn’t use credits. The Tools Explorer in the Developer Portal also lists your tools.</p>
 
-<h2>Learn more</h2>
+<h2>Learn More</h2>
 <ul>
 <li><a href="https://community.meltwater.com/meltwater-mcp-433">Meltwater MCP Help Center</a></li>
 <li><a href="https://community.meltwater.com/product-updates/meltwater-mcp-credit-dashboard-12451">Meltwater MCP Credit Dashboard</a></li>
@@ -119,5 +140,10 @@ a{color:var(--accent);text-underline-offset:3px}
 <li><a href="https://developer.meltwater.com/tools/mcp-console/tools-explorer/">Developer Portal: Tools Explorer</a></li>
 </ul>
 </main>
+<script>
+if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+}
+</script>
 </body>
 </html>
