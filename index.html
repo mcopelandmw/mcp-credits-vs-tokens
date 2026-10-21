@@ -26,6 +26,14 @@ li{margin-bottom:6px}
 .good>div{padding:16px 0;border-bottom:1px solid var(--line)}
 .good>div:last-child{border-bottom:0}
 .good strong{color:var(--accent)}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.quick{background:var(--tint);border-radius:8px;padding:16px 20px;margin:0 0 24px}
+.quick p{margin:0 0 6px}.quick p:last-child{margin:0}
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--accent);color:#fff;font-weight:500}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) thead th{color:#101616}}
+tbody th{font-weight:500;width:26%}
 code{background:var(--tint);padding:1px 6px;border-radius:4px;font-size:.9em}
 a{color:var(--accent);text-underline-offset:3px}
 </style>
@@ -38,6 +46,22 @@ a{color:var(--accent);text-underline-offset:3px}
 <p>With the new MCP Usage page, Account Admins can now see exactly where their Intelligence Credits go. That raises a fair question: “My AI assistant uses tokens. Meltwater uses credits. Aren’t they the same thing?” We’re here to show you how they’re different.</p>
 <p class="tldr"><strong>TL;DR:</strong> Tokens are used in every message you send. Credits only get used when your assistant uses Meltwater tools.</p>
 
+<table>
+<thead><tr><th></th><th>Tokens</th><th>Intelligence Credits</th></tr></thead>
+<tbody>
+<tr><th>Who bills you</th><td>Your AI provider</td><td>Meltwater</td></tr>
+<tr><th>What uses them</th><td>Every message you send and every reply</td><td>Only when your assistant calls a Meltwater tool</td></tr>
+<tr><th>What drives the amount</th><td>How long the conversation is</td><td>Which Meltwater tools get called</td></tr>
+<tr><th>Where to see them</th><td>Your AI provider’s usage or billing settings</td><td>Account &gt; MCP Usage, or ask your assistant</td></tr>
+</tbody>
+</table>
+
+<div class="quick">
+<p><strong>Quick check:</strong></p>
+<p>Asked for fresh data from Meltwater? That uses tokens and credits.</p>
+<p>Asked to reformat, summarize or rewrite what you already have? That uses tokens only.</p>
+</div>
+
 <h2>Tokens: Billed by Your AI Provider</h2>
 <p>Tokens measure how much text your AI assistant (Claude, ChatGPT, Copilot and others) reads and writes. Your AI provider bills you for them. Each time you send a message, the assistant:</p>
 <ul><li>Reads your message</li><li>Rereads the whole conversation so far</li><li>Writes its reply</li></ul>
@@ -47,12 +71,12 @@ a{color:var(--accent);text-underline-offset:3px}
 <h2>Intelligence Credits: Billed by Meltwater</h2>
 <p>Credits measure the Meltwater intelligence your assistant pulls in using Meltwater MCP. They’re used from your Meltwater credit balance, only when the assistant calls a Meltwater tool. A tool is one task the AI Assistant assigns to Meltwater, like building a search or pulling analytics. The AI assistant chooses the tools needed for each task, but you can guide it.</p>
 <p>Each tool call is charged by credit cost, depending on how much work the tool does: You can recognize a tool when you expand its dropdown to see a “request” (might look different in your AI environment).</p>
-<figure><img src="images/tool-request-dropdown.png" alt="A Claude conversation asking for the latest LEGO news, with the Unified Documents Retrieval tool expanded to show its request" loading="lazy"></figure>
+<figure><img src="images/tool-request-dropdown.png" alt="A Claude conversation asking for the latest LEGO news, with the Unified Documents Retrieval tool expanded to show its request" loading="lazy"><figcaption>Expand the tool dropdown to see the request your assistant sent to Meltwater.</figcaption></figure>
 
 <h2>Multiple Tool Calls Add Up Credits</h2>
 <p>For the next example, you can ask a question like, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, <code>Aggregate document metrics</code>, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
 <figure><img src="images/poppi-aggregate-call.gif" alt="Animation of an assistant answering a question about Poppi by calling the Aggregate document metrics tool" loading="lazy"></figure>
-<p>Each call uses credits based on a credit cost assigned at the tool-level. The assistant then builds the comparison table, works out the comparison in text, and writes the explanation. That part costs no credits. The credits are only used in prompts that call Meltwater MCP tools.</p>
+<p>Each call uses credits based on a credit cost assigned at the tool-level. The credits are only used in prompts that call Meltwater MCP tools.</p>
 
 <h2>Follow-Up Messages Use Tokens, Not Always Credits</h2>
 <p>Next, you might ask your AI assistant to “Refresh this weekly brief.” It calls Meltwater for fresh data, and those tool calls use credits. Then you say “Now reformat that as bullets.” That second request never reaches Meltwater, because the assistant already has the data. It uses tokens, because the assistant has to reread the thread and rewrite the brief. It uses no credits.</p>
@@ -65,16 +89,21 @@ a{color:var(--accent);text-underline-offset:3px}
 <div class="good">
 <div>
 <p><strong>Where to track credits:</strong> Account Admins can open Account &gt; MCP Usage to see credit spend by user, by tool and over time.</p>
-<figure><img src="images/mcp-usage-page.png" alt="The Account menu in Meltwater with MCP Usage selected, showing credits used and a daily usage chart" loading="lazy"></figure>
+<figure><img src="images/mcp-usage-page.png" alt="The Account menu in Meltwater with MCP Usage selected, showing credits used and a daily usage chart" loading="lazy"><figcaption>Account &gt; MCP Usage shows credits used and a daily trend.</figcaption></figure>
 <p>Anyone on your account with Meltwater MCP can also ask their assistant for usage, even users who aren’t admins. Ask something like “What’s my credit usage?” or “How many credits did this cost?” The assistant uses the account usage tool (<code>account_get_credit_usage</code>) to pull the numbers. Note: Checking usage doesn’t use credits.</p>
 <p>By default, the answer covers the current month for everyone on the account. You can ask for a different date range, a specific tool, or a breakdown by month, tool, or user. To check one conversation, ask “How many credits were used?” in that same conversation.</p>
-<figure><img src="images/credits-in-conversation.png" alt="A ChatGPT conversation where the user asks for account credit usage and gets credits consumed and total calls" loading="lazy"></figure>
-<figure><img src="images/credits-in-claude.png" alt="A Claude conversation that loads Meltwater credit usage and answers with total credits and calls, broken down by tool and day" loading="lazy"></figure>
+<figure><img src="images/credits-in-conversation.png" alt="A ChatGPT conversation where the user asks for account credit usage and gets credits consumed and total calls" loading="lazy"><figcaption>In ChatGPT, the highlighted numbers are the credits consumed and total calls.</figcaption></figure>
+<figure><img src="images/credits-in-claude.png" alt="A Claude conversation that loads Meltwater credit usage and answers with total credits and calls, broken down by tool and day" loading="lazy"><figcaption>In Claude, the highlighted total is the credits and calls for the period.</figcaption></figure>
 <p><strong>Tips for the account usage tool:</strong> Results are most accurate for future conversations. If you try <code>account_get_credit_usage</code> in older conversations, it may not be accurate to future credit measurements.</p>
 </div>
 <div><p><strong>Where to track tokens:</strong> Check your AI provider’s usage or billing settings. Meltwater doesn’t see or charge for tokens.</p></div>
 <div><p><strong>Making credits go further:</strong> Follow-up requests like reformatting, summarizing or rewriting usually don’t call Meltwater again. Being specific up front also helps the assistant pick the right tool the first time.</p></div>
 </div>
+
+<h2>Troubleshooting</h2>
+<p><strong>The assistant used more credits than I expected.</strong> Expand the tool dropdowns in the conversation to see which Meltwater tools were called, then ask “How many credits were used?” in that same conversation. A single prompt can call several tools. Being specific up front helps the assistant pick the right tool the first time.</p>
+<p><strong>My assistant doesn’t call Meltwater at all.</strong> Make sure the Meltwater connector is turned on in your AI assistant, then ask for something that needs Meltwater data, like the latest news about your brand. If the answer doesn’t show a Meltwater tool call, name Meltwater in your prompt.</p>
+<p><strong>A tool isn’t available to me.</strong> The tools you can use depend on your Meltwater package, and some need a permission an Account Admin can grant. Ask your assistant “Which Meltwater tools do I have, and what do they cost?” Checking costs doesn’t use credits. The Tools Explorer in the Developer Portal also lists your tools.</p>
 
 <h2>Learn more</h2>
 <ul>
