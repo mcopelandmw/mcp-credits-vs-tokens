@@ -353,7 +353,6 @@
         limit: 15
       },
       input: "LEGO, last 7 days, all sources",
-      status: "Real result on Oct 20 from the customer connector, 5 documents.",
       response: "Five documents came back. Two were about the toy company: a YouTube video and an employer ranking. The other three were a Japanese band, an aviation article that uses LEGO as a comparison, and a 1997 shipping story."
     },
     "Mention count": {
@@ -368,7 +367,6 @@
         filters: { generalIndexFilters: { date: { from: "now-6d/d", to: "now+1d/d" } } },
         source: "general"
       },
-      status: "Real call on Oct 20, total count only. The prompt's breakdown by source and day needs a live run.",
       response: "Real result: 3,715 mentions of Poppi in the last 7 days."
     },
     "Mention breakdown": {
@@ -386,7 +384,6 @@
         filters: { generalIndexFilters: { date: { from: "now-6d/d", to: "now+1d/d" } } },
         source: "general"
       },
-      status: "Real call on Oct 20 with a source type and day breakdown. Totals move as the day's data arrives (3,715 earlier, 3,721 now).",
       response: "Real result: X/Twitter drove 1,861 of the 3,721 mentions. Daily counts ran from 313 to 761."
     }
   };
@@ -543,7 +540,7 @@
     if (callDone) {
       $("toolRowName").textContent = sample.friendly;
       $("toolRowInput").textContent = sample.input;
-      $("toolRowCredits").textContent = credits + " credits per call. " + sample.status;
+      $("toolRowCredits").textContent = credits + " credits per call.";
       $("toolRowResponse").textContent = sample.response;
       if (toolSeqKey !== activeKey) {
         startToolSequence();
