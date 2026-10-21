@@ -72,13 +72,13 @@ a{color:var(--accent);text-underline-offset:3px}
 
 <h2>Intelligence Credits: Billed by Meltwater</h2>
 <p>Credits measure the Meltwater intelligence your assistant pulls in using Meltwater MCP. They’re used from your Meltwater credit balance, only when the assistant calls a Meltwater tool. A tool is one task the AI Assistant assigns to Meltwater, like building a search or pulling analytics. The AI assistant chooses the tools needed for each task, but you can guide it.</p>
-<p>Each tool call is charged by credit cost, depending on how much work the tool does: You can recognize a tool when you expand its dropdown to see a “request” (might look different in your AI environment).</p>
+<p>Some tools are charged by credit cost, depending on how much work the tool does. Others are free. You can recognize a tool when you expand its dropdown to see a “request” (might look different in your AI environment).</p>
 <figure><img src="images/tool-request-dropdown.png" alt="A Claude conversation asking for the latest LEGO news, with the Unified Documents Retrieval tool expanded to show its request" loading="lazy"><figcaption>Expand the tool dropdown to see the request your assistant sent to Meltwater.</figcaption></figure>
 
 <h2>Multiple Tool Calls Add Up Credits</h2>
 <p>For the next example, you can ask a question like, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, <code>Aggregate document metrics</code>, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
 <figure><img src="images/poppi-aggregate-call.gif" alt="Animation of an assistant answering a question about Poppi by calling the Aggregate document metrics tool" loading="lazy"></figure>
-<p>Each call uses credits based on a credit cost assigned at the tool-level. The credits are only used in prompts that call Meltwater MCP tools.</p>
+<p>Tools that cost credits use an amount assigned at the tool level. The credits are only used in prompts that call Meltwater MCP tools.</p>
 
 <h2>Follow-Up Messages Use Tokens, Not Always Credits</h2>
 <p>Next, you might ask your AI assistant to “Refresh this weekly brief.” It calls Meltwater for fresh data, and those tool calls use credits. Then you say “Now reformat that as bullets.” That second request never reaches Meltwater, because the assistant already has the data. It uses tokens, because the assistant has to reread the thread and rewrite the brief. It uses no credits.</p>
