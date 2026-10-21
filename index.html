@@ -91,17 +91,14 @@ a{color:var(--accent);text-underline-offset:3px}
 <p class="note">Costs can change. To see the current cost of every tool you have, ask your assistant “Which Meltwater tools do I have, and what do they cost?” Checking costs doesn’t use credits.</p>
 
 <h2>Multiple Tool Calls Add Up Credits</h2>
-<p>Say you ask, “How has Poppi been performing in the last 7 days?” To answer, the assistant calls one Meltwater tool, <code>Aggregate document metrics</code>, to count the Poppi mentions by platform and by day. That call uses 25 credits. The assistant then builds the table and writes the summary. That part costs no credits.</p>
-<figure><video autoplay loop muted playsinline preload="metadata" poster="images/poppi-aggregate-call-poster.webp" aria-label="Screen recording of a Claude conversation: the user asks for a document statistics analysis of Poppi for the last 7 days, and the assistant pulls the data from Meltwater and writes the summary into a Claude Docs file"><source src="images/poppi-aggregate-call.mp4" type="video/mp4"><img src="images/poppi-aggregate-call-poster.webp" alt="A Claude conversation building a Poppi document statistics summary from Meltwater data"></video></figure>
-<p>A bigger question takes more calls. Here the question was, “How has sentiment about Poppi performed after the announcement of Jetty in the last 14 days? Include relevant coverage and trends.” The assistant made 13 Meltwater calls to answer it:</p>
+<p>Say you ask, “How has Poppi been performing in the last 7 days?” You might expect one lookup. Here, the assistant made three Meltwater calls to answer it:</p>
 <ul>
-<li>4 free lookups for the schema and shared skills: 0 credits</li>
-<li>4 <code>Retrieve documents by keyword</code> calls at 200 credits each: 800 credits</li>
-<li>3 <code>Aggregate document metrics</code> calls at 25 credits each: 75 credits</li>
-<li>2 aggregations that failed: they didn’t show up in credit usage</li>
+<li>1 <code>Retrieve documents by keyword</code> call at 200 credits: 200 credits</li>
+<li>2 <code>Aggregate document metrics</code> calls at 25 credits each: 50 credits</li>
 </ul>
-<p>That’s 875 credits for one question, compared with 25 for the single-call question above.</p>
-<figure><img src="images/poppi-tool-calls.webp" alt="A Claude conversation showing the list of Meltwater tool calls made for one question about Poppi and Jetty: schema lookups, keyword retrievals and aggregations, two marked Failed" loading="lazy"><figcaption>Each line is one tool call. Retrievals cost 200 credits, aggregations cost 25, and lookups are free.</figcaption></figure>
+<p>That’s 250 credits for one question. The assistant then wrote the answer from the results, and writing costs no credits.</p>
+<figure><img src="images/poppi-7-day.webp" alt="A Claude conversation where the user asks how Poppi has been performing in the last 7 days. The assistant answers with mention volume, reach and sentiment, and a collapsed line reads Used Meltwater integration" loading="lazy"><figcaption>Expand the “Used Meltwater integration” line above the answer to see each tool call.</figcaption></figure>
+<p>The assistant chooses the tools, so the same question can cost more or less on another run. Retrievals cost 200 credits each and aggregations cost 25, so a few extra retrievals add up fast.</p>
 
 <h2>Follow-Up Messages Use Tokens, Not Always Credits</h2>
 <p>Next, you might ask your AI assistant to “Refresh this weekly brief.” It calls Meltwater for fresh data, and those tool calls use credits. Then you say “Now reformat that as bullets.” That second request never reaches Meltwater, because the assistant already has the data. It uses tokens, because the assistant has to reread the thread and rewrite the brief. It uses no credits.</p>
