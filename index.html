@@ -103,9 +103,7 @@ a{color:var(--accent);text-underline-offset:3px}
 <h2>Follow-Up Messages Use Tokens, Not Always Credits</h2>
 <p>Next, you might ask your AI assistant to “Refresh this weekly brief.” It calls Meltwater for fresh data, and those tool calls use credits. Then you say “Now reformat that as bullets.” That second request never reaches Meltwater, because the assistant already has the data. It uses tokens, because the assistant has to reread the thread and rewrite the brief. It uses no credits.</p>
 
-<h2>Recap: Prompts Use Text, Credits Are Used When Calling Meltwater</h2>
-<p>Hope that clarifies it: Prompt length drives tokens. Meltwater calls drive credits.</p>
-<p>That’s why a long, extensive conversation can use plenty of tokens and zero credits. It’s also why a four-word prompt can use more credits than you’d expect if it calls several heavyweight tools.</p>
+<p>A long, extensive conversation can use plenty of tokens and zero credits. A four-word prompt can use more credits than you’d expect if it calls several heavyweight tools.</p>
 
 <h2>Try It Yourself</h2>
 <p>Type a prompt, pick a model, and see the estimated tokens. Turn on Meltwater MCP to see the credits a tool call would use.</p>
