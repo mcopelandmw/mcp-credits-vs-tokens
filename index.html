@@ -91,13 +91,12 @@ a{color:var(--accent);text-underline-offset:3px}
 <p class="note">A tool’s credit cost stays the same. What changes from run to run is which tools your assistant calls, so the total for a question can vary. To see the cost of every tool you have, ask your assistant “Which Meltwater tools do I have, and what do they cost?” Checking costs doesn’t use credits.</p>
 
 <h2>Multiple Tool Calls Add Up Credits</h2>
-<p>Say you ask, “How has Poppi been performing in the last 7 days?” You might expect one lookup. Here, the assistant made three Meltwater calls to answer it:</p>
+<p>When you ask a quick question like “How has Poppi been performing in the last 7 days?” you might expect one lookup. Here, the assistant made three Meltwater calls to answer it:</p>
 <ul>
 <li>1 <code>Retrieve documents by keyword</code> call at 200 credits: 200 credits</li>
 <li>2 <code>Aggregate document metrics</code> calls at 25 credits each: 50 credits</li>
 </ul>
 <p>That’s 250 credits for one question. The assistant then wrote the answer from the results, and writing costs no credits.</p>
-<figure><img src="images/poppi-7-day.webp" alt="A Claude conversation where the user asks how Poppi has been performing in the last 7 days. The assistant answers with mention volume, reach and sentiment, and a collapsed line reads Used Meltwater integration" loading="lazy"><figcaption>Expand the “Used Meltwater integration” line above the answer to see each tool call.</figcaption></figure>
 <p>The assistant chooses the tools, so the same question can cost more or less on another run. Retrievals cost 200 credits each and aggregations cost 25, so a few extra retrievals add up fast.</p>
 
 <h2>Follow-Up Messages Use Tokens, Not Always Credits</h2>
